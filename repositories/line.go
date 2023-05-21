@@ -20,7 +20,6 @@ func NewLineRepository(lintBot *linebot.Client) *LineRepository {
 func (r *LineRepository) SendOperations(replyToken string) error {
 	bubble := linebot.BubbleContainer{
 		Size: linebot.FlexBubbleSizeTypeKilo,
-		Header: &linebot.BoxComponent{
 			BackgroundColor: "#4CC764",
 			PaddingAll:      linebot.FlexComponentPaddingTypeXl,
 			Layout:          linebot.FlexBoxLayoutTypeVertical,
@@ -229,4 +228,3 @@ func (r *LineRepository) SendMessageError(replyToken string, msgErr string) erro
 		// TODO: handle error when send message error
 	}
 	return nil
-}
