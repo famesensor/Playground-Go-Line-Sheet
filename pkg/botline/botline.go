@@ -1,4 +1,4 @@
-package lineBot
+package botline
 
 import (
 	"github.com/famesensor/playground-go-line-sheet/configs"
