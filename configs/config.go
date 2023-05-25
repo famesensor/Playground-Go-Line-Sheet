@@ -8,9 +8,11 @@ import (
 )
 
 type Config struct {
-	AppPort           string `mapstructure:"APP_PORT"`
-	LineChannelSecret string `mapstructure:"LINE_CHANNEL_SECRET"`
-	LineChannelToken  string `mapstructure:"LINE_CHANNEL_TOKEN"`
+	AppPort                 string `mapstructure:"APP_PORT"`
+	LineChannelSecret       string `mapstructure:"LINE_CHANNEL_SECRET"`
+	LineChannelToken        string `mapstructure:"LINE_CHANNEL_TOKEN"`
+	SheetCredentialFileName string `mapstructure:"SHEET_CREDENTIAL_FILE_NAME"`
+	SheetSpreadSheetId      string `mapstructure:"SHEET_SPREAD_SHEET_ID"`
 }
 
 var config Config
