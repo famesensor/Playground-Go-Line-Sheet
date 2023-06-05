@@ -16,6 +16,14 @@ func NewLineService(lineRepo ports.LineRepository, sheetRepo ports.SheetReposito
 	}
 }
 
+func (lineSrv *LineService) GetOperations(replyToken string) {
+	err := lineSrv.lineRepo.SendOperations(replyToken)
+	if err != nil {
+		lineSrv.SendMessageError(replyToken)
+		return
+	}
+}
+
 func (lineSrv *LineService) GetWords(replyToken string) {
 	words, err := lineSrv.sheetRepo.GetValues(lineSrv.spreadSheetId, "Wording!A:C")
 	if err != nil {
@@ -24,6 +32,14 @@ func (lineSrv *LineService) GetWords(replyToken string) {
 	}
 
 	err = lineSrv.lineRepo.SendMessageWords(replyToken, words)
+	if err != nil {
+		lineSrv.SendMessageError(replyToken)
+		return
+	}
+}
+
+func (lineSrv *LineService) AddWordDescription(replyToken string) {
+	err := lineSrv.lineRepo.SendAddWordDescription(replyToken)
 	if err != nil {
 		lineSrv.SendMessageError(replyToken)
 		return
