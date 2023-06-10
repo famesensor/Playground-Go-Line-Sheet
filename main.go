@@ -31,9 +31,15 @@ func main() {
 	app.Use(compress.New())
 	app.Use(logger.New())
 
-	// TODO: handle error
-	lintBot, _ := botline.ConnectLineBot(config)
-	sheetConn, _ := sheet.ConnectGoogleSheet(ctx, config)
+	lintBot, err := botline.ConnectLineBot(config)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	sheetConn, err := sheet.ConnectGoogleSheet(ctx, config)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// repositories
 	lineRepo := repositories.NewLineRepository(lintBot)
