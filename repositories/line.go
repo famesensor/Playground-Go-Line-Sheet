@@ -39,12 +39,12 @@ func (r *LineRepository) SendOperations(replyToken string) error {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Style:  linebot.FlexButtonStyleTypePrimary,
-					Action: linebot.NewMessageAction("Get words", "getwords"),
+					Action: linebot.NewMessageAction("Get words", "gw"),
 					Height: linebot.FlexButtonHeightTypeSm,
 				},
 				&linebot.ButtonComponent{
 					Style:  linebot.FlexButtonStyleTypePrimary,
-					Action: linebot.NewMessageAction("Add word", "addword"),
+					Action: linebot.NewMessageAction("Add word", "aw"),
 					Height: linebot.FlexButtonHeightTypeSm,
 				},
 			},
