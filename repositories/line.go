@@ -179,6 +179,47 @@ func (r *LineRepository) SendAddWordDescription(replyToken string) error {
 	return nil
 }
 
+func (r *LineRepository) SendAddWord(replyToken, message string) error {
+	bubble := linebot.BubbleContainer{
+		Size: linebot.FlexBubbleSizeTypeMicro,
+		Header: &linebot.BoxComponent{
+			BackgroundColor: "#4CC764",
+			PaddingAll:      linebot.FlexComponentPaddingTypeXl,
+			Layout:          linebot.FlexBoxLayoutTypeVertical,
+			Contents: []linebot.FlexComponent{
+				&linebot.TextComponent{
+					Text:   "🌥️ Good morning wording",
+					Weight: linebot.FlexTextWeightTypeBold,
+					Color:  "#FFFFFF",
+				},
+			},
+		},
+		Body: &linebot.BoxComponent{
+			Layout:     linebot.FlexBoxLayoutTypeVertical,
+			PaddingAll: linebot.FlexComponentPaddingTypeXxl,
+			Contents: []linebot.FlexComponent{
+				&linebot.TextComponent{
+					Text:   message,
+					Size:   linebot.FlexTextSizeTypeXs,
+					Weight: linebot.FlexTextWeightTypeBold,
+					Wrap:   true,
+					Align:  linebot.FlexComponentAlignTypeCenter,
+				},
+			},
+		},
+	}
+
+	container := linebot.CarouselContainer{Contents: []*linebot.BubbleContainer{&bubble}}
+	flexMessage := linebot.NewFlexMessage("add-word-successfully", &container)
+
+	_, err := r.lintBot.ReplyMessage(replyToken, flexMessage).Do()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (r *LineRepository) SendMessageError(replyToken string, msgErr string) error {
 	textMessage := linebot.NewTextMessage(msgErr)
 
