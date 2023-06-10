@@ -9,7 +9,7 @@ import (
 type LineRepository interface {
 	SendOperations(replyToken string) error
 	SendMessageWords(replyToken string, words []models.Word) error
-	SendAdwdWordDescription(replyToken string) error
+	SendAddWordDescription(replyToken string) error
 	SendAddWord(replyToken string, message string) error
 	SendMessageError(replayToken string, msgErr string) error
 }
