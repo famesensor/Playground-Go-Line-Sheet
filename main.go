@@ -31,7 +31,6 @@ func main() {
 	app.Use(compress.New())
 	app.Use(logger.New())
 
-	// connect third party
 	lintBot, err := botline.ConnectLineBot(config)
 	if err != nil {
 		log.Fatal(err)
